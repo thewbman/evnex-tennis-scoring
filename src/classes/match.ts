@@ -34,7 +34,7 @@ export default class Match {
 
     pointWonBy(player: string) {
         if (this.winner) {
-            return `The match has already been won by ${this.winner}`;
+            throw new Error(`You cannot score additional points once a game is complete. The match has already been won by ${this.winner}`);
         }
 
         if (!this.currentSet) {

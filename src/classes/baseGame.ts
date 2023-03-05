@@ -40,7 +40,7 @@ export default class BaseGame {
 
     scorePoint(player: string) {
         if (this.isComplete()) {
-            throw new Error("You cannot score additional points once a game is complete")
+            throw new Error(`You cannot score additional points once a game is complete. The games has already been won by ${this.winner}`);
         }
 
         if (player === this.matchConfiguration.Player1) {

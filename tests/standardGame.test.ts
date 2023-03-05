@@ -93,5 +93,11 @@ describe('StandardGame', () => {
             expect(game.isComplete()).toBe(true);
             expect(game.getScore()).toBe(`${p2} won the game`);
         });
+
+        test('cannot score more points after game is complete', () => {
+            expect(() =>
+                game.scorePoint(p2)
+            ).toThrow();
+        });
     });
 });

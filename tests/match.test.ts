@@ -123,5 +123,11 @@ describe('Match', () => {
             expect(match.getScore()).toBe(`${p2} won the match`);
             expect(match.isComplete()).toBe(true);
         });
+
+        test('cannot score more points after match is complete', () => {
+            expect(() =>
+                match.pointWonBy(p2)
+            ).toThrow();
+        });
     });
 });
