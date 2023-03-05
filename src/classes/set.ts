@@ -15,6 +15,7 @@ export default class Set {
 
     private minimumGamesToWin: number = 6;
     private minimumGamesMoreThanOpponent: number = 2;
+    private maximumGamesToWin: number = 7;
 
     /**
      * Create a stndard set to score
@@ -30,7 +31,7 @@ export default class Set {
 
         if (!this.currentGame) {
             this.currentGame = (this.p1games === this.minimumGamesToWin && this.p2games === this.minimumGamesToWin)
-                ? new TieBreakerGame(this.matchConfiguration)
+                ? new TieBreakerGame(this.matchConfiguration) // tied at 6 games each uses a single tie breaker game to complete the set
                 : new StandardGame(this.matchConfiguration);
         }
 
@@ -57,9 +58,12 @@ export default class Set {
         }
 
         if (
-            (this.p1games >= this.minimumGamesToWin)
-            &&
-            ((this.p1games - this.p2games) >= this.minimumGamesMoreThanOpponent)
+            (this.p1games === this.maximumGamesToWin)
+            || (
+                (this.p1games >= this.minimumGamesToWin)
+                &&
+                ((this.p1games - this.p2games) >= this.minimumGamesMoreThanOpponent)
+            )
         ) {
             this.winner = this.matchConfiguration.Player1;
             return true;
@@ -67,9 +71,12 @@ export default class Set {
 
 
         if (
-            (this.p2games >= this.minimumGamesToWin)
-            &&
-            ((this.p2games - this.p1games) >= this.minimumGamesMoreThanOpponent)
+            (this.p2games === this.maximumGamesToWin)
+            || (
+                (this.p2games >= this.minimumGamesToWin)
+                &&
+                ((this.p2games - this.p1games) >= this.minimumGamesMoreThanOpponent)
+            )
         ) {
             this.winner = this.matchConfiguration.Player2;
             return true;

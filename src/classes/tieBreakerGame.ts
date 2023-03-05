@@ -17,7 +17,7 @@ export default class TieBreakerGame extends BaseGame {
     // Return the current score of the current game
     getScore(): string {
         if (this.winner) {
-            return `${this.winner} won`
+            return `${this.winner} won the game`
         }
 
         return `${this.p1points}-${this.p2points}`;

@@ -24,6 +24,14 @@ export default class BaseGame {
             throw new Error("Abstract classes can't be instantiated.");
         }
 
+        if (!config.Player1 || !config.Player2) {
+            throw new Error("Valid values must be passed for the player names of the match");
+        }
+
+        if (config.Player1 === config.Player2) {
+            throw new Error("Player names must be unique");
+        }
+
         this.matchConfiguration = config;
         this.minimumPointsToWin = minimumPointsToWin;
         this.minimumPointsMoreThanOpponent = minimumPointsMoreThanOpponent;
